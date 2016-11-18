@@ -20,7 +20,9 @@ def main():
   for line in f.readlines():      
     line = line.strip()
     y = open('yield.txt','a')
-    y.write(line + str('  ') + getStock(line) + str('  ') + str(parse_stock.get_yield(line)) + str('\n'))
+    # check the yield rate is > 6.25%
+    if parse_stock.get_yield(line)/float(getStock(line)) > 0.0625:
+      y.write(line + str('  ') + getStock(line) + str('  ') + str(parse_stock.get_yield(line)) + str('\n'))
   print('Finish time: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 
 if __name__ == "__main__":
