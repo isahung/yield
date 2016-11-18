@@ -50,10 +50,11 @@ def parse_stock(page):
 
   Dividends_list = group_list(Dividends_list, 4)
 
-  for i in Dividends_list:
-    print i
+  # print all yield value
+  #for i in Dividends_list: 
+  #  print i
 
-  print '\n'
+  #print '\n'
   
   data_dict['stockid'] = title
   data_dict['yield'] = Dividends_list
@@ -88,9 +89,9 @@ def group_list(l,block):
 
 def pasre_stock_value(dict_):
 
-    print '\n'
-    print dict_['stockid']
-    print '\n'
+    #print '\n'
+    #print dict_['stockid']
+    #print '\n'
 
     Dividends_list = []
 
@@ -109,17 +110,15 @@ def pasre_stock_value(dict_):
         sum += float(Dividends_list[i][3])  
 
     #print sum / float(Dividends_year)
-    return sum
+    return sum / float(Dividends_year)
 
-def main():
+def get_yield(id):
   fin = open('stockid.txt', 'r+')
   StockCodeList = [str(i)for i in fin.read().splitlines()]
   fin.close()
 
-  page = GetHtmlcode('2330')
+  page = GetHtmlcode(id)
   dict_ = parse_stock(page)
 
-  pasre_stock_value(dict_)
-
-if __name__ == "__main__":
-  main()
+  return pasre_stock_value(dict_)
+  
