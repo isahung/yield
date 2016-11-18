@@ -8,7 +8,7 @@ def getStock(id):
   stock = Share(str(id)+'.TW')
   today = datetime.date.today() #todays date
   data = stock.get_price()
-  #time.sleep(0.1)
+  time.sleep(2)
   return data
 
 def main():

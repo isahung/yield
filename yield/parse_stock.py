@@ -89,28 +89,31 @@ def group_list(l,block):
 
 def pasre_stock_value(dict_):
 
-    #print '\n'
-    #print dict_['stockid']
-    #print '\n'
+  #print '\n'
+  #print dict_['stockid']
+  #print '\n'
 
-    Dividends_list = []
+  Dividends_list = []
 
-    Dividends_list = dict_['yield']
-    
-    if len(Dividends_list) >= 5:
-        Dividends_year = 5
-    else:
-        Dividends_year = len(Dividends_list)
+  Dividends_list = dict_['yield']
 
-    #print Dividends_list
-    sum = 0.0
-    # 5 years average yield rate
-    for i in range(0, Dividends_year):
-        #print float(Dividends_list[i][3])
-        sum += float(Dividends_list[i][3])  
+  if len(Dividends_list) == 0:
+    return 0.0
+  
+  if len(Dividends_list) >= 5:
+      Dividends_year = 5
+  else:
+      Dividends_year = len(Dividends_list)
 
-    #print sum / float(Dividends_year)
-    return sum / float(Dividends_year)
+  #print Dividends_list
+  sum = 0.0
+  # 5 years average yield rate
+  for i in range(0, Dividends_year):
+      #print float(Dividends_list[i][3])
+      sum += float(Dividends_list[i][3])  
+
+  #print sum / float(Dividends_year)
+  return sum / float(Dividends_year)
 
 def get_yield(id):
   fin = open('stockid.txt', 'r+')
