@@ -33,11 +33,10 @@ def deleteContent(fName):
   with open(fName, "w"):
     pass
 
-deleteContent('stockid.txt')
-stockNumAndName = getAllStockNumberAndName()
-#print stockNumAndName
-for oneSet in stockNumAndName:
-    #print oneSet[0] + oneSet[1]
-
-  f = open('stockid.txt','a')
-  f.write(oneSet[0] + oneSet[1]+'\n')
+def gen_stockid():
+  deleteContent('stockid.txt')
+  stockNumAndName = getAllStockNumberAndName()
+  #psave stockNum
+  for oneSet in stockNumAndName:
+    f = open('stockid.txt','a')
+    f.write(oneSet[0]+'\n')
