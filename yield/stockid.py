@@ -6,8 +6,8 @@ import os
 # get stock id and name
 def getStockNumberAndName(index):
   try:
-    # set STK01..23.php?STK=01 ... 23 
-    url = 'http://www.twse.com.tw/ch/trading/inc/STKCHOICE/STK%02d.php?STK=%02d'%(index,index)
+    # set STK01..31.php?STK=01 ... 31 
+    url = 'http://www.twse.com.tw/ch/trading/inc/STKCHOICE/STK%02d.php'%(index)
     req = urllib2.Request(url)
     rawData = urllib2.urlopen(req)
     tmpData = rawData.read()
@@ -21,7 +21,7 @@ def getStockNumberAndName(index):
 def getAllStockNumberAndName():
   try:
     result = []
-    for index in range(1,24): # all catalogs
+    for index in range(1,31): # all catalogs
       tmpResult = getStockNumberAndName(index)
       if(tmpResult):
         result += tmpResult

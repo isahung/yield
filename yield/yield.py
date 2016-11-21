@@ -27,7 +27,8 @@ def main():
     stock_yield = parse_stock.get_yield(line)
     stock_price = getStock(line)
     time.sleep(2)
-    if stock_yield/float(stock_price) >= 0.0625:
+    #if stock_yield/float(stock_price) >= 0.0625:
+    if stock_yield/float(stock_price) >= 0.10:
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
   print('Finish time: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 
