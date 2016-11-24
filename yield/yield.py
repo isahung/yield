@@ -1,14 +1,7 @@
-from yahoo_finance import Share
 import datetime
 import time
 import stockid #stockid.py
 import parse_stock #parse_stock.py
- 
-def getStock(id):
-  stock = Share(str(id)+'.TW')
-  today = datetime.date.today() #todays date
-  data = stock.get_price()
-  return data
 
 def main():
   print('Start time: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
@@ -25,12 +18,11 @@ def main():
     y = open('yield.txt','a')
     # check the yield rate is > 6.25%
     stock_yield = parse_stock.get_yield(line)
-    stock_price = getStock(line)
+    stock_price = parse_stock.get_price()
     time.sleep(2)
     if(stock_price == None):
       continue
-    #if stock_yield/float(stock_price) >= 0.0625:
-    if stock_yield/float(stock_price) >= 0.10:
+    if stock_yield/float(stock_price) >= 0.0625:
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
   print('Finish time: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 

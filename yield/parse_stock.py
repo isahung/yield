@@ -4,6 +4,8 @@ import re
 import urllib2
 import csv
 
+g_price = 0.0
+
 def GetHtmlcode(ID):
   # Get the webpage's source html code
   source = 'http://goodinfo.tw/StockInfo/StockDetail.asp?STOCK_ID='
@@ -41,14 +43,19 @@ def parse_stock(page):
 
   data_dict = {}
   Dividends_list = []
+  price_list = []
   list_ = []
 
   for l in datatable:
     if l.find(u'\u8fd1&nbsp;10&nbsp;\u5e74&nbsp;\u80a1&nbsp;\u5229&nbsp;\u653f&nbsp;\u7b56') != -1:
       #print l
       split_html_tags(l, Dividends_list)
+    elif l.find(u'font-weight:bold;color:') != -1:
+      #print l
+      split_html_tags(l, price_list)
 
   Dividends_list = group_list(Dividends_list, 4)
+  #print price_list[0]
 
   # print all yield value
   #for i in Dividends_list: 
@@ -58,6 +65,7 @@ def parse_stock(page):
   
   data_dict['stockid'] = title
   data_dict['yield'] = Dividends_list
+  data_dict['price'] = price_list[0]
 
   #list_.append(Dividends_list)
   return data_dict
@@ -69,7 +77,7 @@ def split_html_tags(tables, list_):
   datarow = regex.findall(tables)
   #print datarow
   #print len(datarow)
-  datarow = datarow[1:]
+  #datarow = datarow[1:]
   str_convert = ''.join(datarow)
 
   string = str_convert.strip()
@@ -115,13 +123,23 @@ def pasre_stock_value(dict_):
   #print sum / float(Dividends_year)
   return sum / float(Dividends_year)
 
-def get_yield(id):
-  fin = open('stockid.txt', 'r+')
-  StockCodeList = [str(i)for i in fin.read().splitlines()]
-  fin.close()
+def get_price():
+  global g_price
+  return g_price
 
+def get_yield(id):
   page = GetHtmlcode(id)
   dict_ = parse_stock(page)
 
+  global g_price
+  g_price = dict_['price']
+  #print g_price
+
   return pasre_stock_value(dict_)
-  
+'''
+def main():
+  print get_yield('2330')
+
+if __name__ == "__main__":
+  main()
+'''
