@@ -11,7 +11,7 @@ git push origin master
 To install yahoo-finance:
 sudo apt install python-pip
 pip install --upgrade pip
-sudo pip BeautifulSoup4
+sudo pip install BeautifulSoup4 requests
 
 Run the program:
 python yield.py
