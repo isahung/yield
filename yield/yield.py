@@ -19,7 +19,7 @@ def main():
     # check the yield rate is > 6.25%
     stock_yield = parse_stock.get_yield(line)
     stock_price = parse_stock.get_price()
-    time.sleep(2)
+    time.sleep(3)
     if(stock_price == None):
       continue
     if stock_yield/float(stock_price) >= 0.0625:

@@ -1,3 +1,8 @@
+Description:
+Program run about 90 mins.
+  Target rules:
+    1. find yield rate >= 6.5%
+
 Use GIT:
 git add .
 git commit -m 'ADD MESSAGE'

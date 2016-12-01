@@ -44,6 +44,7 @@ def parse_stock(page):
   data_dict = {}
   Dividends_list = []
   price_list = []
+  two_year_high_price = []
   list_ = []
 
   for l in datatable:
@@ -136,10 +137,9 @@ def get_yield(id):
   #print g_price
 
   return pasre_stock_value(dict_)
-'''
+
 def main():
   print get_yield('2330')
 
 if __name__ == "__main__":
   main()
-'''
