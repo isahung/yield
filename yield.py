@@ -19,10 +19,11 @@ def main():
     # check the yield rate is > 6.25%
     stock_yield = parse_stock.get_yield(line)
     stock_price = parse_stock.get_price()
+    historical_price = parse_stock.historical_price(int(line))
     time.sleep(3)
     if(stock_price == None):
       continue
-    if stock_yield/float(stock_price) >= 0.0625:
+    if (stock_yield/float(stock_price) >= 0.0625 and float(stock_price)/historical_price <= 0.6 and float(stock_price) >= 20):
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
   print('Finish time: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 

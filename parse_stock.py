@@ -3,6 +3,8 @@
 import re
 import urllib2
 import csv
+import requests
+from bs4 import BeautifulSoup
 
 g_price = 0.0
 
@@ -13,18 +15,52 @@ def historical_price(index):
 
   url = "http://www.twse.com.tw/ch/trading/exchange/FMNPTK/genpage/Report201612/%d_F3_1_11.php?STK_NO=%d&myear=2016&mmon=12"%(index,index)
   res = requests.get(url, verify=False)
+
   soup = BeautifulSoup(res.text,'html.parser')
   
   row = soup.find_all('tr', attrs={ 'bgcolor' : "#FFFFFF" })
   count = len(row)
+  # OTC
   if (count == 0):
-    return 0
+    DATA = {'input_stock_code':str(index)}
+    url = "http://www.tpex.org.tw/web/stock/statistics/monthly/st42.php"
+    res = requests.post(url, DATA)
+    soup = BeautifulSoup(res.text,'html.parser')
+    table = soup.find_all('table', attrs={ 'class' : "page-table-board" })
+    row = table[0].find_all('tr')
+    col1 = ""
+    col2 = ""
+    if (len(row) > 2):
+      col1 = row[2].find_all('td')
+    if (len(row) > 3):
+      col2 = row[3].find_all('td')
+    ncol1 = 0.0
+    ncol2 = 0.0
+    if (len(col1) > 4):
+      ncol1 = float(col1[4].text)
+    if (len(col2) > 4):
+      ncol2 = float(col2[4].text)
+    if (ncol1 >= ncol2):
+      #print ncol1
+      return ncol1
+    else:
+      #print ncol2
+      return ncol2
   # TWSE
   else:
-    col1 = row[count-3].find_all('td')
-    col2 = row[count-2].find_all('td')
-    ncol1 = float(col1[4].text)
-    ncol2 = float(col2[4].text)
+    col1 = ""
+    col2 = ""
+    if(count >= 3):
+      col1 = row[count-3].find_all('td')
+    if(count >= 2):
+      col2 = row[count-2].find_all('td')
+
+    ncol1 = 0.0
+    ncol2 = 0.0
+    if (len(col1) > 4):
+      ncol1 = float(col1[4].text)
+    if (len(col2) > 4):
+      ncol2 = float(col2[4].text)
     if (ncol1 >= ncol2):
       #print ncol1
       return ncol1
