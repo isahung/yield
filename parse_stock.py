@@ -37,9 +37,9 @@ def historical_price(index):
     ncol1 = 0.0
     ncol2 = 0.0
     if (len(col1) > 4):
-      ncol1 = float(col1[4].text)
+      ncol1 = float(col1[4].text.replace(',',''))
     if (len(col2) > 4):
-      ncol2 = float(col2[4].text)
+      ncol2 = float(col2[4].text.replace(',',''))
     if (ncol1 >= ncol2):
       #print ncol1
       return ncol1
@@ -58,9 +58,9 @@ def historical_price(index):
     ncol1 = 0.0
     ncol2 = 0.0
     if (len(col1) > 4):
-      ncol1 = float(col1[4].text)
+      ncol1 = float(col1[4].text.replace(',',''))
     if (len(col2) > 4):
-      ncol2 = float(col2[4].text)
+      ncol2 = float(col2[4].text.replace(',',''))
     if (ncol1 >= ncol2):
       #print ncol1
       return ncol1
