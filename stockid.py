@@ -21,9 +21,12 @@ def parse_stockid(index):
         if data.group(2) is not None:
           if (len(cols[4].text.encode('utf-8')) != 0):
             symbolid =  filter(str.isalnum,data.group(1))
-            symbol = data.group(2)
-            start = cols[2].text.encode('utf-8')
-            type = cols[4].text.encode('utf-8')
+            # stock id 2936, 4552, 8442, 8466 has no data in TWSE 
+            if (symbolid == 2936 or symbolid == 4552 or symbolid == 8442 or symbolid == 8466):
+              continue  
+            #symbol = data.group(2)
+            #start = cols[2].text.encode('utf-8')
+            #type = cols[4].text.encode('utf-8')
             #print symbolid,symbol,start,type
             f = open('stockid.txt','a')
             f.write(symbolid+'\n')

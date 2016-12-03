@@ -37,6 +37,7 @@ def main():
     historical_price = parse_stock.historical_price(int(line))
     time.sleep(3)
     if(stock_price == None or historical_price == 0.0):
+      y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue
     if (stock_yield/float(stock_price) >= 0.0625 and float(stock_price)/historical_price <= 0.6 and float(stock_price) >= 20):
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
