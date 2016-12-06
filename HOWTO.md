@@ -1,10 +1,11 @@
 Description:
 Program run about 90 mins.
-  Target rules:
-    1. find yield rate >= 6.5%
-    2. current price / last two year hightest price <= 0.6
-    3. current price >= 20
-    4. P/E <= 10
+
+Target rules:
+1. find yield rate >= 6.25%
+2. current price / last two year hightest price <= 0.6
+3. current price >= 20
+4. recent one year P/E <= 10
 
 Use GIT:
 git add .
