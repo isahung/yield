@@ -43,7 +43,7 @@ def main():
     if (stock_yield/float(stock_price) >= 0.0625 and # rule 1
         float(stock_price)/historical_price <= 0.6 and # rule 2 
         float(stock_price) >= 20 and # rule 3
-        0 < recent_PER <= 10): # rule 4
+        0 < float(stock_price)/recent_PER <= 10): # rule 4
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
     count = count + 1
     bar.cursor.restore()
