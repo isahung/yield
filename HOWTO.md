@@ -14,7 +14,7 @@ git push origin master
 To install python modules:
 sudo apt install python-pip
 pip install --upgrade pip
-sudo pip install BeautifulSoup4 requests progressive
+sudo pip install datetime BeautifulSoup4 requests progressive
 
 Run the program:
 python yield.py
