@@ -19,22 +19,22 @@ def get_recent_PER(index):
   soup = BeautifulSoup(html,'html.parser')
   row = soup.find_all('tr', attrs={ 'bgcolor' : "#FFFFFF" })
   col12 = row[12].find_all('td')
-  str1 = col12[3].text
+  str1 = col12[3].text.encode('latin1', 'ignore').decode('big5')
   str1.encode("utf-8")
   str1 = str1.replace(u"元", u"")
 
   col13 = row[13].find_all('td')
-  str2 = col13[3].text
+  str2 = col13[3].text.encode('latin1', 'ignore').decode('big5')
   str2.encode("utf-8")
   str2 = str2.replace(u"元", u"")
 
   col14 = row[14].find_all('td')
-  str3 = col14[3].text
+  str3 = col14[3].text.encode('latin1', 'ignore').decode('big5')
   str3.encode("utf-8")
   str3 = str3.replace(u"元", u"")
 
   col15 = row[15].find_all('td')
-  str4 = col15[3].text
+  str4 = col15[3].text.encode('latin1', 'ignore').decode('big5')
   str4.encode("utf-8")
   str4 = str4.replace(u"元", u"")
   return float(str1) + float(str2) + float(str3) + float(str4)
