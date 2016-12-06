@@ -8,6 +8,37 @@ from bs4 import BeautifulSoup
 
 g_price = 0.0
 
+def get_recent_PER(index):
+  url = "https://tw.stock.yahoo.com/d/s/company_%d.html"%(index)
+  request = urllib2.Request(url) 
+  request.add_header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36")
+
+  response = urllib2.urlopen(request)  
+  html = response.read()
+
+  soup = BeautifulSoup(html,'html.parser')
+  row = soup.find_all('tr', attrs={ 'bgcolor' : "#FFFFFF" })
+  col12 = row[12].find_all('td')
+  str1 = col12[3].text
+  str1.encode("utf-8")
+  str1 = str1.replace(u"元", u"")
+
+  col13 = row[13].find_all('td')
+  str2 = col13[3].text
+  str2.encode("utf-8")
+  str2 = str2.replace(u"元", u"")
+
+  col14 = row[14].find_all('td')
+  str3 = col14[3].text
+  str3.encode("utf-8")
+  str3 = str3.replace(u"元", u"")
+
+  col15 = row[15].find_all('td')
+  str4 = col15[3].text
+  str4.encode("utf-8")
+  str4 = str4.replace(u"元", u"")
+  return float(str1) + float(str2) + float(str3) + float(str4)
+
 def historical_price(index):
   DATA = {'STK_NO':str(index)}
   url = "http://www.twse.com.tw/ch/trading/exchange/FMNPTK/FMNPTK.php"
