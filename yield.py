@@ -42,9 +42,9 @@ def main():
       y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue
     if (stock_yield/float(stock_price) >= 0.0625 and # rule 1
-        float(stock_price)/historical_price <= 0.6 and # rule 2 
-        float(stock_price) >= 20 and # rule 3
-        0 < float(stock_price)/recent_PER <= 10 and # rule 4
+        float(stock_price)/historical_price <= 0.6 and # rule 2
+        float(stock_price) >= 10 and # rule 3
+        0 < float(stock_price)/recent_PER <= 15 and # rule 4
         int(total_volume) >= 50) : # rule 5
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
     count = count + 1
