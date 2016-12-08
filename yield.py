@@ -31,12 +31,12 @@ def main():
   for line in f.readlines():      
     line = line.strip()
     y = open('yield.txt','a')
-    # check the yield rate is > 6.25%
-    stock_yield = parse_stock.get_yield(line)
-    stock_price = parse_stock.get_price()
+    # check the yield rate is >= 6.25%
+    stock_yield = parse_stock.get_average_dividend(int(line))
+    stock_price = parse_stock.get_current_price(int(line))
     historical_price = parse_stock.historical_price(int(line))
     recent_PER = parse_stock.get_recent_PER(int(line))
-    time.sleep(3)
+    time.sleep(0.5)
     if(stock_price == None or historical_price == 0.0):
       y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue

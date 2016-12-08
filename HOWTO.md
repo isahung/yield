@@ -1,5 +1,5 @@
 Description:
-Program run about 90 mins.
+Program run about 35 mins.
 
 Target rules:
 1. find yield rate >= 6.25%
