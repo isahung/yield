@@ -6,6 +6,7 @@ Target rules:
 2. current price / last two year hightest price <= 0.6
 3. current price >= 20
 4. recent one year P/E <= 10
+5. total volume >= 50
 
 Use GIT:
 git add .

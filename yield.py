@@ -36,14 +36,16 @@ def main():
     stock_price = parse_stock.get_current_price(int(line))
     historical_price = parse_stock.historical_price(int(line))
     recent_PER = parse_stock.get_recent_PER(int(line))
-    time.sleep(0.5)
+    total_volume = parse_stock.get_current_volume(int(line))
+    time.sleep(0.3)
     if(stock_price == None or historical_price == 0.0):
       y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue
     if (stock_yield/float(stock_price) >= 0.0625 and # rule 1
         float(stock_price)/historical_price <= 0.6 and # rule 2 
         float(stock_price) >= 20 and # rule 3
-        0 < float(stock_price)/recent_PER <= 10): # rule 4
+        0 < float(stock_price)/recent_PER <= 10 and # rule 4
+        int(total_volume) >= 50) : # rule 5
       y.write(line + str('  ') + stock_price + str('   ') + str(stock_yield) + str('\n'))
     count = count + 1
     bar.cursor.restore()

@@ -28,6 +28,19 @@ def get_average_dividend(index):
     dividends += float(col[5].text)
   return dividends/dividends_year
 
+def get_current_volume(index):
+  url = "https://tw.stock.yahoo.com/q/q?s=%d"%(index)
+  request = urllib2.Request(url) 
+  request.add_header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36")
+
+  response = urllib2.urlopen(request)  
+  html = response.read()
+
+  soup = BeautifulSoup(html,'html.parser')
+  table = soup.find_all('table', attrs={ 'width' : "750", 'border' : "2" })
+  row = table[0].find_all('td')
+  return row[6].text.replace(',','')
+
 def get_current_price(index):
   url = "https://tw.stock.yahoo.com/q/q?s=%d"%(index)
   request = urllib2.Request(url) 
