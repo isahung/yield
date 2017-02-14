@@ -15,10 +15,11 @@ def parse_stockid(index):
   for row in soup.select('tr'):
     cols = row.find_all('td')
     col1 = cols[0].text.encode('utf-8')
-    data = re.search(r'(.*)    　(.*)',col1)
+    data = re.search(r'(.*)　(.*)',col1)
     if data is not None:
       if data.group(1) is not None:
         if data.group(2) is not None:
+          #print data.group(1)
           if (len(cols[4].text.encode('utf-8')) != 0):
             symbolid =  filter(str.isalnum,data.group(1))
             # stock id 2936, 4552, 8442, 8466 has no data in TWSE 
