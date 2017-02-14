@@ -90,7 +90,7 @@ def historical_price(index):
   url = "http://www.twse.com.tw/ch/trading/exchange/FMNPTK/FMNPTK.php"
   res = requests.post(url, DATA)
 
-  url = "http://www.twse.com.tw/ch/trading/exchange/FMNPTK/genpage/Report201612/%d_F3_1_11.php?STK_NO=%d&myear=2016&mmon=12"%(index,index)
+  url = "http://www.twse.com.tw/ch/trading/exchange/FMNPTK/genpage/Report201702/%d_F3_1_11.php?STK_NO=%d&myear=2017&mmon=02"%(index,index)
   res = requests.get(url, verify=False)
 
   soup = BeautifulSoup(res.text,'html.parser')
