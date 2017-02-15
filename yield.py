@@ -37,7 +37,7 @@ def main():
     historical_price = parse_stock.historical_price(int(line))
     recent_PER = parse_stock.get_recent_PER(int(line))
     total_volume = parse_stock.get_current_volume(int(line))
-    time.sleep(0.3)
+    time.sleep(0.2)
     if(stock_price == None or historical_price == 0.0):
       y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue

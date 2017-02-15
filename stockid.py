@@ -22,10 +22,13 @@ def parse_stockid(index):
           #print data.group(1)
           if (len(cols[4].text.encode('utf-8')) != 0):
             symbolid =  filter(str.isalnum,data.group(1))
-            # stock id 2936, 4552, 8442, 8466 has no data in TWSE 
-            if (symbolid != '2936' and symbolid != '4552' and symbolid != '8442' and symbolid != '8466'):
-              f = open('stockid.txt','a')
-              f.write(symbolid+'\n')
+            # stock id 2936, 4552, 8442, 8466, 3708, 5258, 8480, 6552, 3662, 6560, 8477 no data in TWSE 
+            if (symbolid != '2936' and symbolid != '4552' and symbolid != '8442' and symbolid != '8466'
+              and symbolid != '3708' and symbolid != '5258' and symbolid != '8480' and symbolid != '6552'
+              and symbolid != '3662' and symbolid != '6560' and symbolid != '8477'):
+              if (len(symbolid) == 4):
+                f = open('stockid.txt','a')
+                f.write(symbolid+'\n')
 
 def gen_stockid():
   deleteContent('stockid.txt')

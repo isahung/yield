@@ -18,6 +18,8 @@ def get_average_dividend(index):
   table = soup.find_all('table', attrs={ 'cellspacing' : "1", 'cellpadding' : "3" })
   row = table[0].find_all('tr', attrs={ 'bgcolor' : "#FFFFFF" })
   dividends_year = len(row)
+  if (dividends_year == 0):
+    return 0 
   if (dividends_year >= 5):
     dividends_year = 5
 
@@ -55,6 +57,7 @@ def get_current_price(index):
   return row[0].text
 
 def get_recent_PER(index):
+  #print index
   url = "https://tw.stock.yahoo.com/d/s/company_%d.html"%(index)
   request = urllib2.Request(url) 
   request.add_header("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36")
