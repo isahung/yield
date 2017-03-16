@@ -39,7 +39,7 @@ def main():
     total_volume = parse_stock.get_current_volume(int(line))
     time.sleep(0.2)
     if(stock_price == None or historical_price == 0.0):
-      y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
+      #y.write(line + str('  *****error*****   ') + stock_price + str('   historical_price:') + str(historical_price) + str('\n'))
       continue
     if (stock_yield/float(stock_price) >= 0.0625 and # rule 1
         float(stock_price)/historical_price <= 0.6 and # rule 2

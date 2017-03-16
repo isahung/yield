@@ -41,6 +41,10 @@ def get_current_volume(index):
   soup = BeautifulSoup(html,'html.parser')
   table = soup.find_all('table', attrs={ 'width' : "750", 'border' : "2" })
   row = table[0].find_all('td')
+
+  if(row[6].text == u"－"):
+    return 0
+
   return row[6].text.replace(',','')
 
 def get_current_price(index):
@@ -54,6 +58,10 @@ def get_current_price(index):
   soup = BeautifulSoup(html,'html.parser')
   table = soup.find_all('table', attrs={ 'width' : "750", 'border' : "2" })
   row = table[0].find_all('b')
+
+  str = row[0].text.encode('latin1', 'ignore').decode('big5')
+  if(str == u"\uFF0D"):
+    return 0
   return row[0].text
 
 def get_recent_PER(index):
@@ -86,6 +94,16 @@ def get_recent_PER(index):
   str4 = col15[3].text.encode('latin1', 'ignore').decode('big5')
   str4.encode("utf-8")
   str4 = str4.replace(u"元", u"")
+
+  if (str1 == "-"):
+    str1 = 0
+  if (str2 == "-"):
+    str2 = 0
+  if (str3 == "-"):
+    str3 = 0
+  if (str4 == "-"):
+    str4 = 0
+
   return float(str1) + float(str2) + float(str3) + float(str4)
 
 def historical_price(index):
@@ -151,6 +169,8 @@ def historical_price(index):
 def main():
   print get_current_price(2330)
   print get_average_dividend(2330)
+  print get_recent_PER(8481)
+  print get_current_volume(8481)
 
 if __name__ == "__main__":
   main()
