@@ -59,9 +59,9 @@ def get_current_price(index):
   table = soup.find_all('table', attrs={ 'width' : "750", 'border' : "2" })
   row = table[0].find_all('b')
 
-  str = row[0].text.encode('latin1', 'ignore').decode('big5')
-  if(str == u"\uFF0D"):
+  if(row[0].text == u"－"):
     return 0
+
   return row[0].text
 
 def get_recent_PER(index):
@@ -171,6 +171,7 @@ def main():
   print get_average_dividend(2330)
   print get_recent_PER(8481)
   print get_current_volume(8481)
+  print get_current_price(8481)
 
 if __name__ == "__main__":
   main()
